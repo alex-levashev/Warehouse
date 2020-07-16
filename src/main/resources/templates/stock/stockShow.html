@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <head th:replace="layout :: site-head"></head>
+    <title>AceLab Stock - Start Page</title>
+</head>
+
+<body>
+<head th:replace="layout :: site-header"></head>
+<div class="container-fluid ml-1 mr-1 mt-1">
+    <h1 style="text-align: center;">Stock Show</h1>
+    <div class="container">
+        <p class="alert alert-danger" th:if="${errorMsg} != null" th:text="${errorMsg}">
+        <table class="table table-bordered">
+            <thead>
+                <tr><th>ID</th><th>Name</th><th>Location</th><th>Actions</th></tr>
+            </thead>
+            <tbody>
+                <tr th:each="st: ${stocks}">
+                    <td th:text="${stock.getId()}" />
+                    <td th:text="${stock.getName()}" />
+                    <td th:text="${stock.getLocation()}" />
+                    <td><a th:href="@{'/stock/edit'(id=${stock.getId()})}"><span class="glyphicon glyphicon-edit"></span></a>
+                    <a th:href="@{'/stock/remove'(id=${stock.getId()})}"><span class="glyphicon glyphicon-remove-circle"></span></a></td>
+                </tr>
+            </tbody>
+        </table>
+        <a th:href="@{/stock/add}" class="btn btn-default" role="button" aria-pressed="true">Stock Add</a>
+    </div>
+</div>
+<foot th:replace="layout :: site-footer"></foot>
+</body>
+
+</html>

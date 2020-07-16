@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <head th:replace="layout :: site-head"></head>
+    <title>AceLab Stock - Start Page</title>
+</head>
+
+<body>
+<head th:replace="layout :: site-header"></head>
+<div class="container-fluid ml-1 mr-1 mt-1">
+    <h1 style="text-align: center;">MainItem Edit</h1>
+    <form class="form-horizontal" action="#" th:action="@{/item/mainitem/add}" th:object="${mainItem}" method="post" >
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="id">mainItem ID:</label>
+            <div class="col-sm-10">
+                <input th:value="${mainItem.getId()}" type="text" class="form-control" id="id" th:field="*{id}" placeholder="mainItem ID" readonly>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="name">MainItem name:</label>
+            <div class="col-sm-10">
+                <input th:field="*{name}" th:value="*{name}" type="text" class="form-control" id="name" name="name" placeholder="mainItem Name">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="description">mainItem Description:</label>
+            <div class="col-sm-10">
+                <input th:field="*{description}" th:value="*{description}" type="text" class="form-control" id="description" name="description" placeholder="mainItem Description">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="price">mainItem Price:</label>
+            <div class="col-sm-10">
+                <input th:field="*{price}" th:value="*{price}" type="text" class="form-control" id="price" name="price" placeholder="mainItem Price">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="subItemIds">SubItems:</label>
+            <div class="col-sm-10 ">
+                <select multiple class="form-control" id="subItemIds" name="subItemIds">
+                    <option th:each="subItem: ${allSubItems}" th:text="${subItem.getName()}" th:selected="${selectedIds.contains(subItem.getId())}" th:value="${subItem.getId()}"></option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" class="btn btn-default">Save</button>
+            </div>
+        </div>
+        <div class="col-sm-2"></div><div th:replace="layout :: error_handling"/>
+    </form>
+</div>
+<foot th:replace="layout :: site-footer"></foot>
+</body>
+
+</html>

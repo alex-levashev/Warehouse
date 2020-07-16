@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <head th:replace="layout :: site-head"></head>
+    <title>AceLab Stock - Start Page</title>
+</head>
+
+<body>
+<head th:replace="layout :: site-header"></head>
+</div>
+<div class="container-fluid ml-1 mr-1 mt-1">
+    <h1 style="text-align: center;">SubItem Show</h1>
+<!-- ERROR -->
+    <div class="col-sm-12 alert alert-danger" role="alert" th:if="${error != null}">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <strong>Error!</strong>
+        <p th:text="${error}"/>
+    </div>
+
+    <div class="container">
+        <table class="table table-bordered">
+            <thead>
+                <tr><th>ID</th><th>Name</th><th>Description</th><th>Price</th><th>Actions</th></tr>
+            </thead>
+            <tbody>
+                <tr th:each="subItem: ${subItems}">
+                    <td th:text="${subItem.getId()}" />
+                    <td th:text="${subItem.getName()}" />
+                    <td th:text="${subItem.getDescription()}" />
+                    <td th:text="${subItem.getPrice()}" />
+                    <td><a th:href="@{'/item/subitem/edit'(id=${subItem.getId()})}"><span class="glyphicon glyphicon-edit"></span></a>
+                    <a th:href="@{'/item/subitem/remove'(id=${subItem.getId()})}"><span class="glyphicon glyphicon-remove-circle"></span></a></td>
+                </tr>
+            </tbody>
+        </table>
+        <a th:href="@{/item/subitem/add}" class="btn btn-default" role="button" aria-pressed="true">SubItem Add</a>
+    </div>
+</div>
+<foot th:replace="layout :: site-footer"></foot>
+</body>
+
+</html>

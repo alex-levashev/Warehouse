@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <head th:replace="layout :: site-head"></head>
+    <title>AceLab Stock - Start Page</title>
+</head>
+<body>
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#"><span class="glyphicon glyphicon-certificate" aria-hidden="true"></span></a>
+        </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav"></ul>
+        </div>
+    </div>
+</nav>
+<div class="container-fluid ml-1 mr-1 mt-1">
+
+    <div class="alert alert-danger" role="alert" th:if="${param.error}">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <strong>Invalid username and password</strong>
+    </div>
+    <div class="alert alert-danger" role="alert" th:if="${param.logout}">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <strong>You have been logged out</strong>
+    </div>
+    <form class="form-horizontal" th:action="@{/login}" method="post">
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="username">User:</label>
+            <div class="col-sm-6">
+                <input type="text" class="form-control" id="username" name="username" placeholder="User name">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="password">Password:</label>
+            <div class="col-sm-6">
+                <input type="password" class="form-control" id="password" name="password" placeholder="Password">
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" class="btn btn-default" value="Sign In">Sing In</button>
+            </div>
+        </div>
+    </form>
+</div>
+</body>
+</html>

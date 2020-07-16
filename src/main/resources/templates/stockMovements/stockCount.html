@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <head th:replace="layout :: site-head"></head>
+    <title>AceLab Stock - Start Page</title>
+</head>
+
+<body>
+<head th:replace="layout :: site-header"></head>
+<div class="container-fluid ml-1 mr-1 mt-1">
+    <h1 style="text-align: center;">Stock Count</h1>
+    <div class="container">
+        <table class="table table-bordered">
+            <thead>
+            <tr><th>ID</th><th>Name</th><th>Location</th><th>Size</th><th>Inner Items</th></tr>
+            </thead>
+            <tbody>
+            <tr th:each="st: ${stocks}">
+                <td th:text="${st.getId()}" />
+                <td th:text="${st.getName()}" />
+                <td th:text="${st.getLocation()}" />
+                <td th:text="${st.getMainItemList().size()}" />
+                <td>
+                    <table class="table table-bordered">
+                        <thead>
+                        <tr><th>Name</th><th>Description</th><th>Q-ty</th></tr>
+                        </thead>
+                        <tr th:each="mainItem: ${st.getMainItemList()}">
+                            <td th:text="${mainItem.getName()}"/>
+                            <td th:text="${mainItem.getDescription()}"/>
+                            <td th:text="${mainItem.getQuantity()}"/>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<foot th:replace="layout :: site-footer"></foot>
+</body>
+
+</html>
